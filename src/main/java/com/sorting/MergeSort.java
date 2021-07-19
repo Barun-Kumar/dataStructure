@@ -5,31 +5,38 @@ import com.util.NumbersUtil;
 public class MergeSort {
     public static void main(String[] args) {
         int min=0;
-        int max=5;
-        int arraySize=5;
+        int max=10;
+        int arraySize=10;
         int [] first= NumbersUtil.generateRandomArray(min,max,arraySize);
         System.out.println("First array :");
         NumbersUtil.printArrayInSingleLine(first);
-        BubbleSort.sortArray(first);
+        mergeSort(first);
         System.out.println("\nSorted First array :");
         NumbersUtil.printArrayInSingleLine(first);
-         min=6;
-         max=10;
-         arraySize=5;
-        int [] second= NumbersUtil.generateRandomArray(min,max,arraySize);
-        System.out.println("\nSecond array :");
-        NumbersUtil.printArrayInSingleLine(second);
-        BubbleSort.sortArray(second);
-        System.out.println("\nSecond sorted array :");
-        NumbersUtil.printArrayInSingleLine(second);
-        long startTime=System.currentTimeMillis();
 
-        int[]nums = mergeSortedArray(first,second);
-        long endTime=System.currentTimeMillis();
-        System.out.println("\n"+(endTime-startTime)/1000 +" Sec");
-        System.out.println("\n Final merged array");
-        NumbersUtil.printArrayInSingleLine(nums);
     }
+
+    public static int [] mergeSort(int[] nums){
+        int n = nums.length;
+        //base condition
+        if(n<2){
+            return nums;
+        }
+        int mid =n/2;
+        int[] left =new int[mid];
+        int[] right = new int[n-mid];
+        for(int i=0;i<mid;i++){
+            left[i]=nums[i];
+        }
+        for(int j=0;j<(n-mid);j++){
+            right[j]=nums[j+mid];
+        }
+        mergeSort(left);
+        mergeSort(right);
+        mergeSortedArray(left,right,nums);
+    return nums;
+    }
+
 
     /**
      * Merge two sorted array
@@ -37,12 +44,10 @@ public class MergeSort {
      * @param r right array
      * @return new merged array
      */
-    public static int[] mergeSortedArray(int[] l, int[] r){
+    public static int[] mergeSortedArray(int[] l, int[] r, int[] nums){
         int ll = l.length;
         int rl=r.length;
-        int[] nums = new int[ll+rl];
         int i=0,j=0,k=0;
-
         while(i<ll && j<rl){
             if(l[i]<=r[j]){
                 nums[k]=l[i];
