@@ -1,8 +1,8 @@
 package com.sorting;
 
 import com.util.NumbersUtil;
-
-public class SelectionSort {
+//Bubble sort O(n^2)
+public class BubbleSort {
 
     public static void main(String[] args) {
         int min=0;
@@ -13,26 +13,24 @@ public class SelectionSort {
         sortArray(nums);
         long endTime=System.currentTimeMillis();
         System.out.println((endTime-startTime)/1000 +" Sec");
-        NumbersUtil.printArray(nums);
-
     }
+
     public static int[] sortArray(int[] nums) {
-        if(nums.length==1){
+        if (nums.length==1)
             return nums;
-        }
-
-        for(int i=0;i<=nums.length-2;i++){
-            int imin = i;
-
-            for(int j=i+1;j<nums.length;j++){
-                if(nums[j]<nums[imin]){
-                    imin=j;
+        for(int k=0;k<nums.length;k++){
+            boolean isSorted=false;
+            for(int i=0;i<nums.length-k-1;i++){
+                if(nums[i]>nums[i+1]){
+                    int t=nums[i];
+                    nums[i]=nums[i+1];
+                    nums[i+1]=t;
+                    isSorted=true;
                 }
-            }
-            int t= nums[i];
-            nums[i]=nums[imin];
-            nums[imin]=t;
 
+            }
+            if(!isSorted)
+                return nums;
         }
         return nums;
 

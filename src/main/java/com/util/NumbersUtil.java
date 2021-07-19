@@ -16,8 +16,13 @@ public class NumbersUtil {
     }
 
     public static void printArray(int[] nums){
-        for(int i=0;i<nums.length;i++){
-            System.out.println(nums[i]);
+        for (int num : nums) {
+            System.out.println(num);
+        }
+    }
+    public static void printArrayInSingleLine(int[] nums){
+        for (int num : nums) {
+            System.out.print(num + " ");
         }
     }
 }
