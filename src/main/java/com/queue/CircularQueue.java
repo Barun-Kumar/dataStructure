@@ -1,7 +1,7 @@
 package com.queue;
 
 public class CircularQueue {
-    private int[] queue;
+    private final int[] queue;
     private int front=-1;
     private int rear=-1;
 
@@ -13,7 +13,7 @@ public class CircularQueue {
     public boolean enqueue(int x){
         //Before inserting check the full condition
         int qSize=queue.length;
-        if((front==0 && rear==qSize-1) && ((rear+1)%qSize)==front){
+        if((front==0 && rear==qSize-1) || ((rear+1)%qSize)==front){
             System.out.println("Queue is full");
             return false;
         }else{
@@ -21,22 +21,43 @@ public class CircularQueue {
                 front=0;
                 rear=0;
             }else{
-                rear=rear+1%qSize;
+                rear=(rear+1)%qSize;
             }
             queue[rear]=x;
         }
         return true;
     }
 
+    public boolean dequeue(){
+        boolean result=false;
+        if(front==-1 && rear==-1){
+            System.out.println("Queue is empty");
+        }else if(front==rear){
+            System.out.println(queue[front]);
+            front=-1;
+            rear=-1;
+            result=true;
+        }else{
+            System.out.println(queue[front]);
+            front=(front+1)%queue.length;
+            result=true;
+        }
+        return result;
+    }
+
     public void displayQueue(){
-        if((front==-1 && rear==-1)){
+        int f= front;
+        int r=rear;
+
+        if((f==-1 && r==-1)){
             System.out.println("Queue is empty");
         }else {
-            while (front!=rear){
-                System.out.println(queue[front]);
-                front=(front+1)% queue.length;
+            while (f!=r){
+                System.out.print(queue[f]+" ");
+                f=(f+1)% queue.length;
             }
-            System.out.println( queue[rear]);
+            System.out.print( queue[r]+" \n");
+            System.out.println("front: "+front+"\n rear: "+rear);
         }
     }
 }

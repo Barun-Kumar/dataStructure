@@ -2,16 +2,16 @@ package com.array;
 
 public interface List {
 
-    public void add(int value) throws Exception;
+    void add(int value) throws Exception;
 
-    public void add(int position, int value);
+    void add(int position, int value);
 
-    public int get(int index);
+    int get(int index);
 
-    public int remove(int value);
+    int remove(int value);
 
-    public boolean isEmpty();
+    boolean isEmpty();
 
-    public int size();
+    int size();
 
 }

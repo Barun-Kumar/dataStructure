@@ -35,6 +35,6 @@ public class FirstBadVersion {
     }
 
     public boolean isBadVersion(int num){
-        return num<=this.badVersion?true:false;
+        return num <= this.badVersion;
     }
 }
