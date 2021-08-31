@@ -2,9 +2,7 @@ package tree.bst;
 
 import com.util.NumbersUtil;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class BinarySearchTree {
     public static BSTNode add(BSTNode root, int data) {
@@ -62,6 +60,16 @@ public class BinarySearchTree {
         return root.data;
     }
 
+    public static BSTNode findMinimum(BSTNode root) throws Exception {
+        if (root == null) {
+            throw new Exception("Tree is empty can not find min");
+        }
+        while (root.left != null) {
+            root = root.left;
+        }
+        return root;
+    }
+
     private static int findMax(BSTNode root) throws Exception {
         if (root == null) {
             throw new Exception("Tree is empty can not find max");
@@ -77,6 +85,14 @@ public class BinarySearchTree {
             return -1;
         } else {
             return Math.max(findHeight(root.left), findHeight(root.right)) + 1;
+        }
+    }
+
+    private static int findMaxDepth(BSTNode root){
+        if(root ==null){
+            return 0;
+        }else{
+            return Math.max(findMaxDepth(root.left),findMaxDepth(root.right))+1;
         }
     }
 
@@ -129,18 +145,84 @@ public class BinarySearchTree {
         }
     }
 
+    public static boolean isBst(BSTNode root){
+        if (root ==null){
+            return true;
+        }
+        if(isLeftSubtreeLesser(root.left, root.data) && isRightSubtreeGreater(root.right,root.data)
+        && isBst(root.left) && isBst(root.right)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private static boolean isRightSubtreeGreater(BSTNode root, int data) {
+        if(root ==null){
+            return true;
+        }
+        if(root.data>data && isRightSubtreeGreater(root.left,data) && isRightSubtreeGreater(root.right,data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private static boolean isLeftSubtreeLesser(BSTNode root, int data) {
+        if(root ==null){
+            return true;
+        }
+        if(root.data<=data && isLeftSubtreeLesser(root.left, data) && isLeftSubtreeLesser(root.right,data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static BSTNode delete(BSTNode root, int val) throws Exception {
+        if(root==null){
+            return root;
+        }else if(val<root.data){
+            root.left=delete(root.left,val);
+        }else if(val>root.data){
+            root.right=delete(root.right,val);
+        }else{
+            System.out.println("We have found the value to be deleted "+ root.data);
+            //Handle the first case, When left child and right child of root are null
+            if(root.left==null && root.right == null){
+                root=null;
+            }else if(root.left==null){
+                root = root.right;
+            }else if(root.right==null){
+                root=root.left;
+            }else{
+                BSTNode temp =findMinimum(root.right);
+                root.data=temp.data;
+                root.right=delete(root.right,temp.data);
+            }
+        }
+        return root;
+    }
+
 
     public static void main(String[] args) throws Exception {
         BSTNode rootTemp = null;
         List<Integer> nums = NumbersUtil.generateRandomList(1, 100, 10);
+        System.out.println(nums);
+        Integer arr[]={35, 86, 50, 2, 22, 39, 2, 38, 95, 66};
+        nums.clear();
+        nums= Arrays.asList(arr);
+
         for (Integer n : nums) {
             rootTemp = add(rootTemp, n);
         }
 
         BTreePrinter.printNode(rootTemp);
         System.out.println("Height of tree is: " + findHeight(rootTemp));
-        search(rootTemp, -100);
-        search(rootTemp, -1000);
+        System.out.println("Max Depth of tree is :"+findMaxDepth(rootTemp));
+        System.out.println("Is BT is BST :"+isBst(rootTemp));
+        search(rootTemp, -22);
+        search(rootTemp, -2);
         System.out.println("Min is :" + findMin(rootTemp));
         System.out.println("Max is :" + findMax(rootTemp));
         System.out.println("Min using recursion :" + findMinRecursion(rootTemp));
@@ -157,6 +239,15 @@ public class BinarySearchTree {
         System.out.println("Postorder Traversal");
         postTraversal(rootTemp);
         System.out.println();
+        System.out.println(Math.max(-1,-1)+1);
+        rootTemp =delete(rootTemp,38);
+        BTreePrinter.printNode(rootTemp);
+
+        rootTemp =delete(rootTemp,39);
+        BTreePrinter.printNode(rootTemp);
+
+        rootTemp =delete(rootTemp,86);
+        BTreePrinter.printNode(rootTemp);
 
     }
 }
