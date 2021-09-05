@@ -208,11 +208,11 @@ public class BinarySearchTree {
     public static void main(String[] args) throws Exception {
         BSTNode rootTemp = null;
         List<Integer> nums = NumbersUtil.generateRandomList(1, 100, 10);
-        System.out.println(nums);
+        //System.out.println(nums);
         Integer arr[]={35, 86, 50, 2, 22, 39, 2, 38, 95, 66};
         nums.clear();
         nums= Arrays.asList(arr);
-
+        System.out.println(nums);
         for (Integer n : nums) {
             rootTemp = add(rootTemp, n);
         }
@@ -220,34 +220,34 @@ public class BinarySearchTree {
         BTreePrinter.printNode(rootTemp);
         System.out.println("Height of tree is: " + findHeight(rootTemp));
         System.out.println("Max Depth of tree is :"+findMaxDepth(rootTemp));
-        System.out.println("Is BT is BST :"+isBst(rootTemp));
-        search(rootTemp, -22);
+        //System.out.println("Is BT is BST :"+isBst(rootTemp));
+        search(rootTemp, 22);
         search(rootTemp, -2);
-        System.out.println("Min is :" + findMin(rootTemp));
-        System.out.println("Max is :" + findMax(rootTemp));
-        System.out.println("Min using recursion :" + findMinRecursion(rootTemp));
-        System.out.println("Max using recursion :" + findMaxRecursion(rootTemp));
-        System.out.println("Level Order Traversal");
-        levelOrderTraversal(rootTemp);
-        System.out.println();
-        System.out.println("Preorder Traversal");
-        preorderTraversal(rootTemp);
-        System.out.println();
-        System.out.println("Inorder Traversal");
-        inorderTraversal(rootTemp);
-        System.out.println();
-        System.out.println("Postorder Traversal");
-        postTraversal(rootTemp);
-        System.out.println();
-        System.out.println(Math.max(-1,-1)+1);
-        rootTemp =delete(rootTemp,38);
-        BTreePrinter.printNode(rootTemp);
-
-        rootTemp =delete(rootTemp,39);
-        BTreePrinter.printNode(rootTemp);
-
-        rootTemp =delete(rootTemp,86);
-        BTreePrinter.printNode(rootTemp);
+//        System.out.println("Min is :" + findMin(rootTemp));
+//        System.out.println("Max is :" + findMax(rootTemp));
+//        System.out.println("Min using recursion :" + findMinRecursion(rootTemp));
+//        System.out.println("Max using recursion :" + findMaxRecursion(rootTemp));
+//        System.out.println("Level Order Traversal");
+//        levelOrderTraversal(rootTemp);
+//        System.out.println();
+//        System.out.println("Preorder Traversal");
+//        preorderTraversal(rootTemp);
+//        System.out.println();
+//        System.out.println("Inorder Traversal");
+//        inorderTraversal(rootTemp);
+//        System.out.println();
+//        System.out.println("Postorder Traversal");
+//        postTraversal(rootTemp);
+//        System.out.println();
+//        System.out.println(Math.max(-1,-1)+1);
+//        rootTemp =delete(rootTemp,38);
+//        BTreePrinter.printNode(rootTemp);
+//
+//        rootTemp =delete(rootTemp,39);
+//        BTreePrinter.printNode(rootTemp);
+//
+//        rootTemp =delete(rootTemp,86);
+//        BTreePrinter.printNode(rootTemp);
 
     }
 }
