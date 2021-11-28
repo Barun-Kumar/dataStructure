@@ -22,7 +22,7 @@ public class BubbleSort {
     }
 
     public static int[] sortArray(int[] nums) {
-        if (nums.length==1)
+        if (nums.length<=1)
             return nums;
         for(int k=0;k<nums.length;k++){
             boolean isSorted=false;
