@@ -42,6 +42,8 @@ public class NumbersUtil {
             System.out.println(num);
         }
     }
+
+
     public static void printArrayInSingleLine(int[] nums){
         for (int num : nums) {
             System.out.print(num + " ");
@@ -55,4 +57,18 @@ public class NumbersUtil {
         }
         System.out.println();
     }
+
+    public static void printArrayInSingleLine(char[] nums){
+        for (char num : nums) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printArray(char[] nums){
+        for (char num : nums) {
+            System.out.println(num);
+        }
+    }
+
 }

@@ -1,5 +1,7 @@
 package com.stack;
 
+import java.util.Stack;
+
 public class Test {
     public static void main(String[] args) throws Exception {
         ArrayStack stack = new ArrayStack(5);
@@ -18,5 +20,9 @@ public class Test {
         System.out.println(stack.poll());
         stack.printStack();
         System.out.println(stack.top());
+
+        Stack<Integer> s = new Stack<>();
+        s.size();
+        s.pop();
     }
 }

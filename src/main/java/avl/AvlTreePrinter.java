@@ -1,6 +1,6 @@
 package avl;
 
-import tree.bst.BSTNode;
+import tree.bst.Node;
 
 import java.util.ArrayList;
 import java.util.Collections;

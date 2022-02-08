@@ -5,9 +5,9 @@ import com.util.NumbersUtil;
 import java.util.*;
 
 public class BinarySearchTree {
-    public static BSTNode add(BSTNode root, int data) {
+    public static Node add(Node root, int data) {
         if (root == null) {
-            root = new BSTNode(data);
+            root = new Node(data);
         } else if (data <= root.data) {
             root.left = add(root.left, data);
         } else {
@@ -16,7 +16,7 @@ public class BinarySearchTree {
         return root;
     }
 
-    public static boolean search(BSTNode root, int data) {
+    public static boolean search(Node root, int data) {
         if (root == null) {
             System.out.println("Tree is empty or tree is exhausted and element was not found");
             return false;
@@ -30,7 +30,7 @@ public class BinarySearchTree {
         }
     }
 
-    public static int findMinRecursion(BSTNode root) throws Exception {
+    public static int findMinRecursion(Node root) throws Exception {
         if (root == null) {
             throw new Exception("Tree is empty can not find min");
         } else if (root.left == null) {
@@ -40,7 +40,7 @@ public class BinarySearchTree {
 
     }
 
-    private static int findMaxRecursion(BSTNode root) throws Exception {
+    private static int findMaxRecursion(Node root) throws Exception {
         if (root == null) {
             throw new Exception("Tree is empty can not find max");
         } else if (root.right == null) {
@@ -50,7 +50,7 @@ public class BinarySearchTree {
 
     }
 
-    public static int findMin(BSTNode root) throws Exception {
+    public static int findMin(Node root) throws Exception {
         if (root == null) {
             throw new Exception("Tree is empty can not find min");
         }
@@ -60,7 +60,7 @@ public class BinarySearchTree {
         return root.data;
     }
 
-    public static BSTNode findMinimum(BSTNode root) throws Exception {
+    public static Node findMinimum(Node root) throws Exception {
         if (root == null) {
             throw new Exception("Tree is empty can not find min");
         }
@@ -70,7 +70,7 @@ public class BinarySearchTree {
         return root;
     }
 
-    private static int findMax(BSTNode root) throws Exception {
+    private static int findMax(Node root) throws Exception {
         if (root == null) {
             throw new Exception("Tree is empty can not find max");
         }
@@ -80,7 +80,7 @@ public class BinarySearchTree {
         return root.data;
     }
 
-    private static int findHeight(BSTNode root) {
+    private static int findHeight(Node root) {
         if (root == null) {
             return -1;
         } else {
@@ -88,7 +88,7 @@ public class BinarySearchTree {
         }
     }
 
-    private static int findMaxDepth(BSTNode root){
+    private static int findMaxDepth(Node root){
         if(root ==null){
             return 0;
         }else{
@@ -96,14 +96,14 @@ public class BinarySearchTree {
         }
     }
 
-    public static void levelOrderTraversal(BSTNode root) {
+    public static void levelOrderTraversal(Node root) {
         if (root == null) {
             System.out.println("Tree is empty, Can not traverse");
         } else {
-            Queue<BSTNode> queue = new LinkedList<>();
+            Queue<Node> queue = new LinkedList<>();
             queue.add(root);
             while (!queue.isEmpty()) {
-                BSTNode node = queue.poll();
+                Node node = queue.poll();
                 System.out.print(node.data + " ");
                 if (null!=node.left) {
                     queue.add(node.left);
@@ -115,7 +115,7 @@ public class BinarySearchTree {
         }
 
     }
-    public static void preorderTraversal(BSTNode root){
+    public static void preorderTraversal(Node root){
         if(root ==null){
             return;
         }else{
@@ -125,7 +125,7 @@ public class BinarySearchTree {
         }
     }
 
-    public static void inorderTraversal(BSTNode root){
+    public static void inorderTraversal(Node root){
         if(root ==null){
             return;
         }else{
@@ -135,7 +135,7 @@ public class BinarySearchTree {
         }
     }
 
-    public static void postTraversal(BSTNode root){
+    public static void postTraversal(Node root){
         if(root==null){
             return;
         }else{
@@ -145,7 +145,7 @@ public class BinarySearchTree {
         }
     }
 
-    public static boolean isBst(BSTNode root){
+    public static boolean isBst(Node root){
         if (root ==null){
             return true;
         }
@@ -157,7 +157,7 @@ public class BinarySearchTree {
         }
     }
 
-    private static boolean isRightSubtreeGreater(BSTNode root, int data) {
+    private static boolean isRightSubtreeGreater(Node root, int data) {
         if(root ==null){
             return true;
         }
@@ -168,7 +168,7 @@ public class BinarySearchTree {
         }
     }
 
-    private static boolean isLeftSubtreeLesser(BSTNode root, int data) {
+    private static boolean isLeftSubtreeLesser(Node root, int data) {
         if(root ==null){
             return true;
         }
@@ -179,7 +179,7 @@ public class BinarySearchTree {
         }
     }
 
-    public static BSTNode delete(BSTNode root, int val) throws Exception {
+    public static Node delete(Node root, int val) throws Exception {
         if(root==null){
             return root;
         }else if(val<root.data){
@@ -196,7 +196,7 @@ public class BinarySearchTree {
             }else if(root.right==null){
                 root=root.left;
             }else{
-                BSTNode temp =findMinimum(root.right);
+                Node temp =findMinimum(root.right);
                 root.data=temp.data;
                 root.right=delete(root.right,temp.data);
             }
@@ -206,7 +206,7 @@ public class BinarySearchTree {
 
 
     public static void main(String[] args) throws Exception {
-        BSTNode rootTemp = null;
+        Node rootTemp = null;
         List<Integer> nums = NumbersUtil.generateRandomList(1, 100, 10);
         //System.out.println(nums);
         Integer arr[]={35, 86, 50, 2, 22, 39, 2, 38, 95, 66};

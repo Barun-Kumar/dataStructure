@@ -1,9 +1,7 @@
 package com;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Test {
 
@@ -14,25 +12,43 @@ public class Test {
         nums.set(j,temp);
         // System.out.println(nums);
     }
+
+
+    public static String reverse(String s){
+        if(s.length()==1){
+            return s;
+        }
+        char[] arr= s.toCharArray();
+        int start=0; int end =arr.length-1;
+        while(start<end){
+            char t=arr[start];
+            arr[start]=arr[end];
+            arr[end]=t;
+            start++
+            ;end--;
+        }
+        return new String(arr);
+    }
+
     public static void main(String[] args) {
-        int input =3;
-        List<Integer> nums = new ArrayList<>();
-        for(int i=1;i<=input;i++){
-            nums.add(i);
-        }
-        System.out.println("List of number whose permutation to be generated");
-        System.out.println(nums);
-        System.out.println("==================");
-        Set<List<Integer>> ans= new HashSet<>();
-        for(int i=0;i< nums.size()-1;i++){
-            swap(nums,i,i+1);
-            System.out.println(nums);
-            ans.add(nums);
+        String s="This is varun";
+        String[] arr= s.split("\\s+"); // O(n)
+        for(int i =0; i< arr.length;i++){    // O(n)
+                arr[i]=reverse(arr[i]);
         }
 
-        System.out.println("=======================");
+        for(int i =0; i< arr.length;i++){
+            System.out.println(arr[i]);
+        }
 
-        System.out.println(ans);
+
+           s= Arrays.stream(arr).collect(Collectors.joining(" "));
+
+
+
+
+
+
     }
 
 }

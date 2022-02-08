@@ -7,4 +7,18 @@ public class Test {
         //l.add(7,10);
         System.out.println(l);
     }
+
+    public static class Printer implements Runnable{
+        static int count=1;
+        @Override
+        public synchronized void run() {
+           // synchronized (this) {
+
+                while (count <= 10) {
+                    System.out.println(count);
+                    count++;
+                }
+           // }
+        }
+    }
 }

@@ -1,9 +1,7 @@
 package avl;
 
-import com.array.ArrayList;
 import com.util.NumbersUtil;
-import tree.bst.BSTNode;
-import tree.bst.BTreePrinter;
+import tree.bst.Node;
 
 import java.util.List;
 
